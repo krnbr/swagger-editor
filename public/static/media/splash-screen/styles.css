@@ -9,7 +9,7 @@ html, body {
 .swagger-editor .swagger-editor__splash-screen {
   position: absolute;
   z-index: 10000;
-  background-color: #173647;
+  background-color: #205081;
   width: 100vw;
   height: 100vh;
   text-align: center;

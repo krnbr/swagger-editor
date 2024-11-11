@@ -1,5 +1,8 @@
-import React, { useState, useImperativeHandle, useRef, forwardRef } from 'react';
+import React, { useState, useImperativeHandle, useRef, forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
+import YAML from 'js-yaml';
+
+import { TopBarContext } from '../../TopBarContext.jsx';
 
 const ImportUrlMenuItemHandler = forwardRef(({ getComponent, editorActions }, ref) => {
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
@@ -8,6 +11,7 @@ const ImportUrlMenuItemHandler = forwardRef(({ getComponent, editorActions }, re
   const [url, setUrl] = useState('');
   const ConfirmDialog = getComponent('ConfirmDialog', true);
   const AlertDialog = getComponent('AlertDialog', true);
+  const topBarContext = useContext(TopBarContext);
 
   const handleConfirmDialogClose = async (result) => {
     if (result) {
@@ -18,6 +22,8 @@ const ImportUrlMenuItemHandler = forwardRef(({ getComponent, editorActions }, re
         setIsConfirmDialogOpen(false);
         setIsAlertDialogOpen(true);
       } else {
+        const contentObject = YAML.load(fsa.payload);
+        topBarContext.saveHistoryToLocalStorage(contentObject.info.title, url);
         editorActions.setContent(fsa.payload, 'import-url');
         setUrl('');
         alertDialogMessage.current = '';
