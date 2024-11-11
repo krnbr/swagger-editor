@@ -36,12 +36,23 @@ export const TopBarProvider = ({ children }) => {
     return localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(Array.from(map)));
   };
 
+  const removedFromStorage = (id) => {
+    map = new Map();
+    if (hasHistoryLocalStorage()) {
+      map = new Map(JSON.parse(loadHistoryFromLocalStorage()));
+    }
+    map.delete(id);
+    setHistory(map);
+    localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(Array.from(map)));
+  };
+
   const contextValue = useMemo(
     () => ({
       history,
       saveHistoryToLocalStorage,
+      removedFromStorage,
     }),
-    [history, saveHistoryToLocalStorage]
+    [history, saveHistoryToLocalStorage, removedFromStorage]
   );
 
   return <TopBarContext.Provider value={contextValue}>{children}</TopBarContext.Provider>;

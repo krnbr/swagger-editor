@@ -2,16 +2,13 @@ import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import YAML from 'js-yaml';
 
-// import LoadHistoryMenuHandler from './LoadHistoryMenuHandler.jsx';
 import { TopBarContext } from '../../../TopBarContext.jsx';
 
-const LoadExampleNestedMenu = (props) => {
+const LoadHistoryMenu = (props) => {
   const { getComponent, editorActions } = props;
-  // const loadHistoryMenuHandler = useRef(null);
   const DropDownMenuNested = getComponent('DropdownMenuNested');
-  // const DropdownMenuItemDivider = getComponent('DropdownMenuItemDivider');
   const DropdownMenuItem = getComponent('DropdownMenuItem');
-  const { history, saveHistoryToLocalStorage } = useContext(TopBarContext);
+  const { history, saveHistoryToLocalStorage, removedFromStorage } = useContext(TopBarContext);
 
   return (
     <>
@@ -34,8 +31,23 @@ const LoadExampleNestedMenu = (props) => {
                   editorActions.setContent(fsa.payload, 'import-url');
                 }
               }}
+              closeId={key}
+              removedFromStorage={() => removedFromStorage(key)}
             >
-              {key}
+              {key}{' '}
+              {/* <button
+                type="button"
+                key={key}
+                style={{
+                  color: 'red',
+                  borderRadius: '20%',
+                }}
+                onClick={() => {
+                  removedFromStorage(key);
+                }}
+              >
+                &times;
+              </button> */}
             </DropdownMenuItem>
           ))
         )}
@@ -44,7 +56,7 @@ const LoadExampleNestedMenu = (props) => {
   );
 };
 
-LoadExampleNestedMenu.propTypes = {
+LoadHistoryMenu.propTypes = {
   getComponent: PropTypes.func.isRequired,
   editorActions: PropTypes.shape({
     importUrl: PropTypes.func.isRequired,
@@ -52,4 +64,4 @@ LoadExampleNestedMenu.propTypes = {
   }).isRequired,
 };
 
-export default LoadExampleNestedMenu;
+export default LoadHistoryMenu;

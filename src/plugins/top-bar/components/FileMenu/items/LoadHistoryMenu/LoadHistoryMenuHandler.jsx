@@ -57,5 +57,3 @@ LoadExampleNestedMenuHandler.propTypes = {
     selectAPIDesignSystemsYAML: PropTypes.func.isRequired,
   }).isRequired,
 };
-
-export default LoadExampleNestedMenuHandler;
