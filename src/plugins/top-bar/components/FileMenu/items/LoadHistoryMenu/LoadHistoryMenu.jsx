@@ -27,7 +27,10 @@ const LoadHistoryMenu = (props) => {
                   console.error('unable to load the url ', value);
                 } else {
                   const contentObject = YAML.load(fsa.payload);
-                  saveHistoryToLocalStorage(contentObject.info.title, value);
+                  saveHistoryToLocalStorage(
+                    `${contentObject.info.title} - version -> ${contentObject.info.version}`,
+                    value
+                  );
                   editorActions.setContent(fsa.payload, 'import-url');
                 }
               }}
@@ -35,19 +38,6 @@ const LoadHistoryMenu = (props) => {
               removedFromStorage={() => removedFromStorage(key)}
             >
               {key}{' '}
-              {/* <button
-                type="button"
-                key={key}
-                style={{
-                  color: 'red',
-                  borderRadius: '20%',
-                }}
-                onClick={() => {
-                  removedFromStorage(key);
-                }}
-              >
-                &times;
-              </button> */}
             </DropdownMenuItem>
           ))
         )}
