@@ -22,7 +22,6 @@ const ImportUrlMenuItemHandler = forwardRef(({ getComponent, editorActions }, re
         setIsConfirmDialogOpen(false);
         setIsAlertDialogOpen(true);
       } else {
-        console.log('fsa', fsa);
         const contentObject = YAML.load(fsa.payload);
         topBarContext.saveHistoryToLocalStorage(
           `${contentObject.info.title} - version -> ${contentObject.info.version}`,
