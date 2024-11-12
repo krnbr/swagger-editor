@@ -13,29 +13,6 @@ const FileMenu = (props) => {
   const LoadExampleNestedMenu = getComponent('TopBarFileMenuLoadExampleNestedMenu', true);
   const LoadHistoryMenu = getComponent('TopBarLoadHistoryMenu', true);
   const SaveAsMenuItem = getComponent('TopBarFileMenuSaveAsMenuItem', true);
-  /* const HISTORY_STORAGE_KEY = 'swagger-editor-next-history';
-
-  const saveHistoryToLocalStorage = (id, url) => {
-    let map = new Map();
-    // eslint-disable-next-line no-use-before-define
-    if (hasHistoryLocalStorage()) {
-      // eslint-disable-next-line no-use-before-define
-      map = new Map(JSON.parse(loadHistoryFromLocalStorage()));
-    }
-    map.set(id, url);
-    map.forEach((item) => {
-      console.log('item ', item);
-    });
-    return localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(Array.from(map)));
-  };
-
-  const loadHistoryFromLocalStorage = () => {
-    return localStorage.getItem(HISTORY_STORAGE_KEY);
-  };
-
-  const hasHistoryLocalStorage = () => {
-    return loadHistoryFromLocalStorage() !== null;
-  }; */
 
   const ConvertAndSaveAsJSONMenuItem = getComponent(
     'TopBarFileMenuConvertAndSaveAsJSONMenuItem',
