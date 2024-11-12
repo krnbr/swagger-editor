@@ -1,9 +1,9 @@
 import React, { createContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-export const TopBarContext = createContext({});
+export const SwaggerContext = createContext({});
 
-export const TopBarProvider = ({ children }) => {
+export const SwaggerProvider = ({ children }) => {
   const HISTORY_STORAGE_KEY = 'swagger-editor-next-history';
 
   let map = new Map();
@@ -55,10 +55,10 @@ export const TopBarProvider = ({ children }) => {
     [history, saveHistoryToLocalStorage, removedFromStorage]
   );
 
-  return <TopBarContext.Provider value={contextValue}>{children}</TopBarContext.Provider>;
+  return <SwaggerContext.Provider value={contextValue}>{children}</SwaggerContext.Provider>;
 };
 
-TopBarProvider.propTypes = {
+SwaggerProvider.propTypes = {
   children: PropTypes.node.isRequired,
   editorActions: PropTypes.shape({
     importUrl: PropTypes.func.isRequired,

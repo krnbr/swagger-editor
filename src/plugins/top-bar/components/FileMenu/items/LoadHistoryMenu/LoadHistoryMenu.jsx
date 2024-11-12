@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import YAML from 'js-yaml';
 
-import { TopBarContext } from '../../../TopBarContext.jsx';
+import { SwaggerContext } from '../../../../../../context/SwaggerContext.jsx';
 
 const LoadHistoryMenu = (props) => {
   const { getComponent, editorActions } = props;
   const DropDownMenuNested = getComponent('DropdownMenuNested');
   const DropdownMenuItem = getComponent('DropdownMenuItem');
-  const { history, saveHistoryToLocalStorage, removedFromStorage } = useContext(TopBarContext);
+  const { history, saveHistoryToLocalStorage, removedFromStorage } = useContext(SwaggerContext);
 
   return (
     <>

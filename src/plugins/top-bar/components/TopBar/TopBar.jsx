@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { TopBarProvider } from '../TopBarContext.jsx';
-
 const TopBar = ({ getComponent }) => {
   const Logo = getComponent('TopBarLogo');
   const FileMenu = getComponent('TopBarFileMenu', true);
@@ -16,16 +14,15 @@ const TopBar = ({ getComponent }) => {
   return (
     <div className="swagger-editor__top-bar">
       <div className="swagger-editor__top-bar-wrapper">
-        <TopBarProvider>
-          <Logo />
-          <FileMenu />
-          <EditMenu />
-          <OpenAPI3GenerateServerMenu />
-          <OpenAPI3GenerateClientMenu />
-          <OpenAPI2GenerateServerMenu />
-          <OpenAPI2GenerateClientMenu />
-          <AboutMenu />
-          {/* <div
+        <Logo />
+        <FileMenu />
+        <EditMenu />
+        <OpenAPI3GenerateServerMenu />
+        <OpenAPI3GenerateClientMenu />
+        <OpenAPI2GenerateServerMenu />
+        <OpenAPI2GenerateClientMenu />
+        <AboutMenu />
+        {/* <div
             className={classNames('dd-menu dd-menu-right', { long: true })}
             style={{
               position: 'absolute',
@@ -68,7 +65,6 @@ const TopBar = ({ getComponent }) => {
               />
             </div>
           </div> */}
-        </TopBarProvider>
       </div>
     </div>
   );

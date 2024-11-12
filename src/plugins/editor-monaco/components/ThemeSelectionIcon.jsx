@@ -16,6 +16,7 @@ const ThemeSelectionIcon = ({ editorSelectors, editorActions }) => {
         className="swagger-editor__editor-pane-bar-control"
         onClick={handleChange('se-vs-light')}
       >
+        Light&nbsp;&nbsp;
         <SunIcon size="small" aria-label="Light theme" />
       </button>
     </div>
@@ -26,6 +27,7 @@ const ThemeSelectionIcon = ({ editorSelectors, editorActions }) => {
         className="swagger-editor__editor-pane-bar-control"
         onClick={handleChange('se-vs-dark')}
       >
+        Dark&nbsp;&nbsp;
         <MoonIcon size="small" aria-label="Dark theme" />
       </button>
     </div>

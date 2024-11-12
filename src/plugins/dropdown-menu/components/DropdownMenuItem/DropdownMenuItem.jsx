@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { XCircleFillIcon } from '@primer/octicons-react';
 
 const DropdownMenuItem = ({ children, onClick, closeId, removedFromStorage }) => {
   return (
@@ -29,7 +30,7 @@ const DropdownMenuItem = ({ children, onClick, closeId, removedFromStorage }) =>
                 removedFromStorage(closeId);
               }}
             >
-              &times;
+              <XCircleFillIcon />
             </button>
           )}
         </button>

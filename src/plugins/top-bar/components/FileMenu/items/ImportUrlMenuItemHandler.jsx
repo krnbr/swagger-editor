@@ -2,7 +2,7 @@ import React, { useState, useImperativeHandle, useRef, forwardRef, useContext } 
 import PropTypes from 'prop-types';
 import YAML from 'js-yaml';
 
-import { TopBarContext } from '../../TopBarContext.jsx';
+import { SwaggerContext } from '../../../../../context/SwaggerContext.jsx';
 
 const ImportUrlMenuItemHandler = forwardRef(({ getComponent, editorActions }, ref) => {
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
@@ -11,7 +11,7 @@ const ImportUrlMenuItemHandler = forwardRef(({ getComponent, editorActions }, re
   const [url, setUrl] = useState('');
   const ConfirmDialog = getComponent('ConfirmDialog', true);
   const AlertDialog = getComponent('AlertDialog', true);
-  const topBarContext = useContext(TopBarContext);
+  const swaggerContext = useContext(SwaggerContext);
 
   const handleConfirmDialogClose = async (result) => {
     if (result) {
@@ -23,7 +23,7 @@ const ImportUrlMenuItemHandler = forwardRef(({ getComponent, editorActions }, re
         setIsAlertDialogOpen(true);
       } else {
         const contentObject = YAML.load(fsa.payload);
-        topBarContext.saveHistoryToLocalStorage(
+        swaggerContext.saveHistoryToLocalStorage(
           `${contentObject.info.title} - version -> ${contentObject.info.version}`,
           url
         );

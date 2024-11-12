@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { SyncIcon, ShareIcon, GearIcon } from '@primer/octicons-react';
 /* eslint-disable react/jsx-props-no-spreading */
 
 const EditorPaneBarTopWrapper = (Original, system) => {
@@ -12,6 +13,24 @@ const EditorPaneBarTopWrapper = (Original, system) => {
           renderControls(
             <>
               <ThemeSelection />
+              <div className="swagger-editor__generic-padding-thin-top-bottom">
+                <button type="button" className="swagger-editor__editor-pane-bar-control">
+                  Fetch&nbsp;&nbsp;
+                  <SyncIcon size="small" />
+                </button>
+              </div>
+              <div className="swagger-editor__generic-padding-thin-top-bottom">
+                <button type="button" className="swagger-editor__editor-pane-bar-control">
+                  Save&nbsp;&nbsp;
+                  <ShareIcon size="small" />
+                </button>
+              </div>
+              <div className="swagger-editor__generic-padding-thin-top-bottom">
+                <button type="button" className="swagger-editor__editor-pane-bar-control">
+                  URL Settings&nbsp;&nbsp;
+                  <GearIcon size="small" />
+                </button>
+              </div>
               {controls}
             </>
           )

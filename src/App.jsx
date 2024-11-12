@@ -33,6 +33,8 @@ import SwaggerUIAdapterPlugin from 'plugins/swagger-ui-adapter/index.js';
 import TextareaPreset from 'presets/textarea/index.js';
 import MonacoPreset from 'presets/monaco/index.js';
 
+import { SwaggerProvider } from './context/SwaggerContext.jsx';
+
 import './styles/main.scss';
 
 const SwaggerEditor = React.memo(
@@ -66,35 +68,37 @@ const SwaggerEditor = React.memo(
     onComplete = null,
   }) => (
     <div className="swagger-editor">
-      <SwaggerUI
-        spec={spec}
-        url={url}
-        layout={layout}
-        requestInterceptor={requestInterceptor}
-        responseInterceptor={responseInterceptor}
-        supportedSubmitMethods={supportedSubmitMethods}
-        queryConfigEnabled={queryConfigEnabled}
-        plugins={plugins}
-        displayOperationId={displayOperationId}
-        showMutatedRequest={showMutatedRequest}
-        docExpansion={docExpansion}
-        defaultModelExpandDepth={defaultModelExpandDepth}
-        defaultModelsExpandDepth={defaultModelsExpandDepth}
-        defaultModelRendering={defaultModelRendering}
-        presets={presets}
-        deepLinking={deepLinking}
-        showExtensions={showExtensions}
-        showCommonExtensions={showCommonExtensions}
-        filter={filter}
-        requestSnippetsEnabled={requestSnippetsEnabled}
-        requestSnippets={requestSnippets}
-        tryItOutEnabled={tryItOutEnabled}
-        displayRequestDuration={displayRequestDuration}
-        withCredentials={withCredentials}
-        persistAuthorization={persistAuthorization}
-        oauth2RedirectUrl={oauth2RedirectUrl}
-        onComplete={onComplete}
-      />
+      <SwaggerProvider>
+        <SwaggerUI
+          spec={spec}
+          url={url}
+          layout={layout}
+          requestInterceptor={requestInterceptor}
+          responseInterceptor={responseInterceptor}
+          supportedSubmitMethods={supportedSubmitMethods}
+          queryConfigEnabled={queryConfigEnabled}
+          plugins={plugins}
+          displayOperationId={displayOperationId}
+          showMutatedRequest={showMutatedRequest}
+          docExpansion={docExpansion}
+          defaultModelExpandDepth={defaultModelExpandDepth}
+          defaultModelsExpandDepth={defaultModelsExpandDepth}
+          defaultModelRendering={defaultModelRendering}
+          presets={presets}
+          deepLinking={deepLinking}
+          showExtensions={showExtensions}
+          showCommonExtensions={showCommonExtensions}
+          filter={filter}
+          requestSnippetsEnabled={requestSnippetsEnabled}
+          requestSnippets={requestSnippets}
+          tryItOutEnabled={tryItOutEnabled}
+          displayRequestDuration={displayRequestDuration}
+          withCredentials={withCredentials}
+          persistAuthorization={persistAuthorization}
+          oauth2RedirectUrl={oauth2RedirectUrl}
+          onComplete={onComplete}
+        />
+      </SwaggerProvider>
     </div>
   )
 );
