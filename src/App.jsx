@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import SwaggerUI from 'swagger-ui-react';
 import 'swagger-ui-react/swagger-ui.css';
@@ -33,7 +33,7 @@ import SwaggerUIAdapterPlugin from 'plugins/swagger-ui-adapter/index.js';
 import TextareaPreset from 'presets/textarea/index.js';
 import MonacoPreset from 'presets/monaco/index.js';
 
-import { SwaggerProvider } from './context/SwaggerContext.jsx';
+import { SwaggerContext, SwaggerHistoryPlugin } from './context/SwaggerContext.jsx';
 
 import './styles/main.scss';
 
@@ -66,9 +66,15 @@ const SwaggerEditor = React.memo(
     persistAuthorization = SwaggerUI.config.defaults.persistAuthorization,
     oauth2RedirectUrl = SwaggerUI.config.defaults.oauth2RedirectUrl,
     onComplete = null,
-  }) => (
-    <div className="swagger-editor">
-      <SwaggerProvider>
+  }) => {
+    const context = useContext(SwaggerContext);
+
+    const allPlugins = useMemo(() => {
+      return [...plugins, SwaggerHistoryPlugin(context)];
+    }, [context, plugins]);
+
+    return (
+      <div className="swagger-editor">
         <SwaggerUI
           spec={spec}
           url={url}
@@ -77,7 +83,7 @@ const SwaggerEditor = React.memo(
           responseInterceptor={responseInterceptor}
           supportedSubmitMethods={supportedSubmitMethods}
           queryConfigEnabled={queryConfigEnabled}
-          plugins={plugins}
+          plugins={allPlugins}
           displayOperationId={displayOperationId}
           showMutatedRequest={showMutatedRequest}
           docExpansion={docExpansion}
@@ -98,9 +104,9 @@ const SwaggerEditor = React.memo(
           oauth2RedirectUrl={oauth2RedirectUrl}
           onComplete={onComplete}
         />
-      </SwaggerProvider>
-    </div>
-  )
+      </div>
+    );
+  }
 );
 
 /* eslint-disable react/require-default-props */
@@ -164,6 +170,7 @@ SwaggerEditor.plugins = {
   SplashScreenPlugin,
   Layout: LayoutPlugin,
   SwaggerUIAdapter: SwaggerUIAdapterPlugin,
+  SwaggerHistoryProvider: SwaggerHistoryPlugin,
 };
 
 SwaggerEditor.presets = {
